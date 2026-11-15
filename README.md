@@ -42,3 +42,5 @@ GitHub Pages can't run a Node server, so deploy it on a host like Render: connec
 - Undo button
 - Public rooms
 - Stroke-by-stroke replay after each turn
+- deployed on  render.com play the game on https://scribble-game-uzx7.onrender.com. by clinking here
+- 
