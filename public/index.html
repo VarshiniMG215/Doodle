@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Doodle Online - draw and guess with friends</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header>
+    <h1>Doodle Online</h1>
+  </header>
+
+  <main>
+
+    <!-- HOME -->
+    <section id="homeScreen" class="screen">
+      <h2>Draw and guess with friends</h2>
+      <p class="small">Make a private room, share the link and play together.</p>
+
+      <label for="nameInput">Your name</label>
+      <input type="text" id="nameInput" maxlength="14" placeholder="Enter your name">
+
+      <div id="createArea">
+        <button id="createBtn" class="main-btn">Create private room</button>
+        <p class="small">Already have a code?</p>
+        <div class="row">
+          <input type="text" id="codeInput" maxlength="5" placeholder="Room code">
+          <button id="joinBtn">Join room</button>
+        </div>
+      </div>
+
+      <div id="inviteArea" class="hidden">
+        <p id="inviteText"></p>
+        <button id="inviteJoinBtn" class="main-btn">Join room</button>
+      </div>
+
+      <p class="error" id="homeError"></p>
+    </section>
+
+    <!-- LOBBY -->
+    <section id="lobbyScreen" class="screen hidden">
+      <h2>Waiting room</h2>
+
+      <label for="shareLink">Send this link to your friends</label>
+      <div class="row">
+        <input type="text" id="shareLink" readonly>
+        <button id="copyBtn">Copy link</button>
+      </div>
+
+      <h3>Players</h3>
+      <ul id="lobbyPlayers"></ul>
+
+      <h3>Settings</h3>
+      <div class="settings">
+        <label for="roundsSelect">Rounds</label>
+        <select id="roundsSelect">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
+
+        <label for="timeSelect">Drawing time</label>
+        <select id="timeSelect">
+          <option value="30">30 seconds</option>
+          <option value="45">45 seconds</option>
+          <option value="60">60 seconds</option>
+          <option value="90">90 seconds</option>
+        </select>
+
+        <label for="packSelect">Words</label>
+        <select id="packSelect">
+          <option value="english">English</option>
+          <option value="kannada">Kannada</option>
+        </select>
+      </div>
+
+      <button id="startBtn" class="main-btn">Start game</button>
+      <p class="small" id="lobbyNote"></p>
+    </section>
+
+    <!-- GAME -->
+    <section id="gameScreen" class="screen hidden">
+      <div class="top-bar">
+        <span id="roundInfo"></span>
+        <span id="hintText" class="hint"></span>
+        <span id="timerText" class="timer"></span>
+      </div>
+
+      <div class="game-layout">
+
+        <div class="left">
+          <div class="board-wrap">
+            <canvas id="board"></canvas>
+            <div id="banner" class="banner hidden"></div>
+          </div>
+
+          <div id="tools" class="tools hidden">
+            <div id="colors"></div>
+            <label class="size-label">Brush
+              <input type="range" id="brushSize" min="2" max="24" value="5">
+            </label>
+            <button id="eraserBtn">Eraser</button>
+            <button id="clearBtn">Clear</button>
+          </div>
+        </div>
+
+        <div class="right">
+          <h3>Players</h3>
+          <ul id="gamePlayers"></ul>
+
+          <h3>Chat and guesses</h3>
+          <div id="chatBox" class="chat-box"></div>
+          <div class="row">
+            <input type="text" id="chatInput" maxlength="100" placeholder="Type your guess here">
+            <button id="sendBtn">Send</button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- END -->
+    <section id="endScreen" class="screen hidden">
+      <h2>Game over</h2>
+      <p id="winnerText"></p>
+      <ol id="finalList"></ol>
+      <button id="againBtn" class="main-btn">Play again</button>
+      <p class="small" id="endNote"></p>
+    </section>
+
+  </main>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
